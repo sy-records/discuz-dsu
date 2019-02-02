@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | DiscuzX系列论坛签到,DSU每日签到插件
-// +----------------------------------------------------------------------
-// | IhadPHP [ 学无止境，编码不止，开源为盼 ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2018 https://qq52o.me, All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 沈唁 <52o@qq52o.cn>
-// +----------------------------------------------------------------------
 // 针对的是DSU每日签到插件，路径是plugin.php?id=dsu_paulsign:sign，论坛一般用的都是这个插件
-Header('content-type:text/html;Charset=utf-8');
 
 function curlGet($url, $use = false, $save = false, $referer = null, $post_data = null) {
     global $cookie_file;
@@ -91,7 +81,7 @@ if (strpos($res, '欢迎您回来')) {
     $res = curlGet($signPageUrl, true, true);
     //根据签到页面上的文字来判断今天是否已经签到
     if (strpos($res, '您今天已经签到过了或者签到时间还未开始')) {
-        $resultStr = '今天已签过到';
+        $resultStr = "今天已签过到\r\n";
     } else {
         //获取formhash验证串
         $formhash = getFormhash($res);
@@ -106,13 +96,13 @@ if (strpos($res, '欢迎您回来')) {
         //提交签到信息
         $res = curlGet($signSubmitUrl, true, true, null, $post_data);
         if (strpos($res, '签到成功')) {
-            $resultStr = '签到成功';
+            $resultStr = "签到成功\r\n";
         } else {
-            $resultStr = '签到失败';
+            $resultStr = "签到失败\r\n";
         }
     }
 } else {
-    $resultStr = '登陆失败';
+    $resultStr = "登陆失败\r\n";
 }
 echo $resultStr;
 unlink($cookie_file); //删除cookie文件

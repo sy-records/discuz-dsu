@@ -37,10 +37,36 @@ function getFormhash($res) {
     }
 }
 
+/**
+ * $text 标题
+ * $desp 描述
+ * $key 方糖key
+ */
+function sendStatus($text , $desp = '' , $key = '')
+{
+	$postdata = http_build_query(
+      array(
+          'text' => $text,
+          'desp' => $desp
+      )
+    );
+
+    $opts = array('http' =>
+        array(
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $postdata
+        )
+    );
+    $context  = stream_context_create($opts);
+    return $result = file_get_contents('https://sc.ftqq.com/'.$key.'.send', false, $context);
+}
+
 //签到代码
 $user = ''; //用户名
 $pwd = ''; //密码
 $baseUrl = ''; //论坛首页地址 结尾带上”/”
+$key = ''; // 方糖key
 
 //心情：开心，难过，郁闷，无聊，怒，擦汗，奋斗，慵懒，衰
 //{"kx","ng","ym","wl","nu","ch","fd","yl","shuai"};
@@ -104,5 +130,10 @@ if (strpos($res, '欢迎您回来')) {
 } else {
     $resultStr = "登陆失败\r\n";
 }
+
+if ($resultStr) {
+    sendStatus('论坛签到提醒', $resultStr, $key);
+}
+
 echo $resultStr;
 unlink($cookie_file); //删除cookie文件

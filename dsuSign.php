@@ -131,7 +131,8 @@ if (strpos($res, '欢迎您回来')) {
     $resultStr = "登陆失败\r\n";
 }
 
-if ($resultStr) {
+// 如果存在 key 则调用发送
+if ($resultStr && !empty($key)) {
     sendStatus('论坛签到提醒', $resultStr, $key);
 }
 

@@ -25,7 +25,9 @@ $todaysay = '滑稽园杠把子'; //想说的话
 $ php dsuSign.php
 ```
 
-或将`dsuSign.php`放到可访问的网站目录中，通过浏览器访问`http://yourdomain.com/dsuSign.php`
+* Web访问
+
+将`dsuSign.php`放到可访问的网站目录中，通过浏览器访问`http://yourdomain.com/dsuSign.php`
 
 * 定时执行
 

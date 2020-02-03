@@ -14,7 +14,7 @@ $key = ''; // 方糖key 地址：http://sc.ftqq.com/?c=code
 //心情：开心，难过，郁闷，无聊，怒，擦汗，奋斗，慵懒，衰
 //{"kx","ng","ym","wl","nu","ch","fd","yl","shuai"};
 $qdxq = 'kx'; //签到时使用的心情
-$todaysay = '滑稽园杠把子'; //想说的话
+$todaysay = "沈唁志 https://qq52o.me"; //想说的话
 ```
 2、手动执行或定时执行
 
